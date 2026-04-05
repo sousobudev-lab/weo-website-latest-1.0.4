@@ -1,0 +1,23 @@
+<!-- PAGE: LAPORAN -->
+<div class="page" id="page-laporan">
+    <div class="page-content">
+        <div class="laporan-header">
+            <h2 style="font-size:1.1rem;font-weight:700">Laporan</h2>
+            <div class="tab-group">
+                <button class="tab-btn active" data-tab-laporan="bulan">Bulan Ini</button>
+                <button class="tab-btn" data-tab-laporan="tahun">Tahun Ini</button>
+                <button class="tab-btn" data-tab-laporan="semua">Semua</button>
+            </div>
+        </div>
+        <section class="stats-grid">
+            <div class="stat-card"><div class="stat-top"><span class="stat-label">Jumlah Resit</span><iconify-icon icon="iwwa:receipt" width="22" class="stat-icon"></iconify-icon></div><p class="stat-value" id="laporanJumlahResit">0</p><p class="stat-change neutral">rekod</p></div>
+            <div class="stat-card"><div class="stat-top"><span class="stat-label">Jumlah Invois</span><iconify-icon icon="iwwa:file-text" width="22" class="stat-icon"></iconify-icon></div><p class="stat-value" id="laporanJumlahInvois">0</p><p class="stat-change neutral">rekod</p></div>
+            <div class="stat-card"><div class="stat-top"><span class="stat-label">Pelanggan</span><iconify-icon icon="iwwa:user" width="22" class="stat-icon"></iconify-icon></div><p class="stat-value" id="laporanJumlahPelanggan">0</p><p class="stat-change neutral">rekod</p></div>
+            <div class="stat-card"><div class="stat-top"><span class="stat-label">Produk</span><iconify-icon icon="iwwa:package" width="22" class="stat-icon"></iconify-icon></div><p class="stat-value" id="laporanJumlahProduk">0</p><p class="stat-change neutral">produk</p></div>
+        </section>
+        <div class="laporan-charts">
+            <div class="chart-card"><h3 class="chart-title">Hasil Jualan (RM)</h3><canvas id="chartHasil" height="200"></canvas></div>
+            <div class="chart-card"><h3 class="chart-title">Status Pembayaran</h3><canvas id="chartStatus" height="200"></canvas></div>
+        </div>
+    </div>
+</div>

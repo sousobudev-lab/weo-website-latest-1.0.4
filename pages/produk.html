@@ -1,0 +1,26 @@
+<!-- PAGE: PRODUK -->
+<div class="page" id="page-produk">
+    <div class="list-topbar">
+        <div class="list-topbar-left">
+            <button class="btn-new-single" id="btnProdukBaru"><iconify-icon icon="iwwa:add" width="14"></iconify-icon> Produk Baru</button>
+            <button class="btn-bulk-delete" id="btnProdukBulkDelete" style="display:none"><iconify-icon icon="iwwa:trash" width="14"></iconify-icon> Padam</button>
+        </div>
+        <div class="list-topbar-right">
+            <div class="tab-group">
+                <button class="tab-btn active" data-tab-produk="semua">Semua</button>
+                <button class="tab-btn" data-tab-produk="ada">Tersedia</button>
+                <button class="tab-btn" data-tab-produk="habis">Habis Stok</button>
+            </div>
+            <div class="list-search">
+                <iconify-icon icon="iwwa:search" width="16"></iconify-icon>
+                <input type="text" id="produkSearch" placeholder="Cari produk...">
+            </div>
+            <span class="list-count" id="produkCount">0 produk</span>
+        </div>
+    </div>
+    <div class="produk-grid" id="produkGrid"></div>
+    <div class="list-empty" id="produkEmpty">
+        <iconify-icon icon="iwwa:package" width="48"></iconify-icon>
+        <p>Tiada produk lagi.</p><p>Tekan <strong>+ Produk Baru</strong> untuk mula.</p>
+    </div>
+</div>

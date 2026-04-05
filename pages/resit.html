@@ -1,0 +1,147 @@
+<!-- PAGE: RESIT / INVOIS (Fasa 1 style — form + preview) -->
+<div class="page" id="page-resit">
+    <div class="resit-workspace">
+        <div class="form-panel">
+            <div class="doc-type-selector">
+                <button class="doc-type-btn active" data-doctype="resit">Resit</button>
+                <button class="doc-type-btn" data-doctype="invoice">Invois</button>
+            </div>
+            <h2 class="panel-title" id="formPanelTitle">Maklumat Resit</h2>
+            <div class="lang-tabs">
+                <button class="lang-tab active" data-lang="ms">Bahasa Melayu</button>
+                <button class="lang-tab" data-lang="en">English</button>
+            </div>
+
+            <div class="form-row" style="margin-bottom:0.8rem;">
+                <button class="btn-save" id="btnToggleSeller" style="font-size:0.82rem;padding:0.45rem 0.8rem;">Sembunyikan Penjual</button>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Maklumat Syarikat</h3>
+                <div class="form-row"><label>Logo Syarikat</label>
+                    <div class="img-upload-wrap">
+                        <div class="logo-upload-area" id="logoUploadArea">
+                            <input type="file" id="logoInput" accept="image/*" hidden>
+                            <img id="logoPreview" src="" alt="" style="display:none;max-height:60px;border-radius:6px;">
+                            <div id="logoPlaceholder"><iconify-icon icon="iwwa:camera" width="24"></iconify-icon><span>Klik untuk muat naik logo</span></div>
+                        </div>
+                        <button class="btn-delete-img" id="btnDeleteLogo" style="display:none"><iconify-icon icon="iwwa:trash" width="14"></iconify-icon></button>
+                    </div>
+                </div>
+                <div class="form-row"><label>Nama Syarikat</label><input type="text" id="companyName" class="form-input" placeholder="Nama Syarikat Sdn Bhd"></div>
+                <div id="companySuggest" class="suggest-box" style="display:none"></div>
+                <div class="form-row"><label>No. Pendaftaran</label><input type="text" id="companyReg" class="form-input" placeholder="123456-X"></div>
+                <div class="form-row"><label>Alamat</label><textarea id="companyAddress" class="form-input form-textarea" placeholder="No. 1, Jalan Contoh, 50000 Kuala Lumpur"></textarea></div>
+                <div class="form-row-2col">
+                    <div class="form-row"><label>Telefon</label><input type="text" id="companyPhone" class="form-input" placeholder="+60 3-1234 5678"></div>
+                    <div class="form-row"><label>Email</label><input type="text" id="companyEmail" class="form-input" placeholder="info@syarikat.com"></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title" id="docDetailsTitle">Butiran Pesanan</h3>
+                <div class="form-row-2col">
+                    <div class="form-row"><label id="docNoLabel">No. Pesanan</label><input type="text" id="invoiceNo" class="form-input" placeholder="ORD-0001"></div>
+                    <div class="form-row"><label>Tarikh</label><input type="date" id="invoiceDate" class="form-input"></div>
+                </div>
+                <div class="form-row-2col">
+                    <div class="form-row" id="rowTarikhLuput" style="display:none"><label>Tarikh Luput</label><input type="date" id="invoiceDue" class="form-input"></div>
+                    <div class="form-row"><label>Status</label>
+                        <select id="invoiceStatus" class="form-input status-select" onchange="applyStatusSelectColor()">
+                            <option value="unpaid">Belum Bayar</option>
+                            <option value="paid">Dibayar</option>
+                            <option value="pending">Tertangguh</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Maklumat Pelanggan / Bill To</h3>
+                <div class="form-row"><label>Nama Pelanggan</label><input type="text" id="clientName" class="form-input" placeholder="Nama Pelanggan"></div>
+                <div class="form-row"><label>Alamat Pelanggan</label><textarea id="clientAddress" class="form-input form-textarea" placeholder="Alamat pelanggan..."></textarea></div>
+                <div class="form-row-2col single-col">
+                    <div class="form-row"><label>Email</label><input type="text" id="clientEmail" class="form-input" placeholder="pelanggan@email.com"></div>
+                    <div class="form-row"><label>No. Telefon</label>
+                        <div class="phone-input-row">
+                            <select id="resitCountryCode" class="form-input form-input-small" style="max-width:70px;flex-shrink:0">
+                                <option value="+60" selected>+60</option>
+                                <option value="+62">+62</option>
+                            </select>
+                            <input type="tel" id="clientPhone" class="form-input" placeholder="123456789" inputmode="numeric" pattern="[0-9]*" style="flex:1;" autocomplete="tel" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Senarai Item / Items</h3>
+                <div class="form-row" style="margin-bottom:0.6rem">
+                    <label>Tambah dari Produk</label>
+                    <div style="display:flex;gap:6px">
+                        <select id="resitPilihProduk" class="form-input" style="flex:1"><option value="" disabled selected hidden>— Pilih produk —</option></select>
+                        <button class="btn-save" id="btnResitTambahProduk" style="padding:0.5rem 0.8rem;font-size:0.82rem;flex-shrink:0">+ Tambah</button>
+                    </div>
+                </div>
+                <div id="itemsList"></div>
+                
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Cukai &amp; Diskaun / Tax &amp; Discount</h3>
+                <div class="form-row-2col">
+                    <div class="form-row"><label>Diskaun (%)</label><input type="number" id="discountPct" class="form-input" value="0" min="0" max="100"></div>
+                    <div class="form-row"><label>SST/GST (%)</label><input type="number" id="taxPct" class="form-input" value="6" min="0" max="30"></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Maklumat Pembayaran / Payment Info</h3>
+                <div class="form-row"><label>No. Akaun Bank</label><input type="text" id="bankAccount" class="form-input" placeholder="Maybank: 1234 5678 9012"></div>
+                <div class="form-row"><label>Nama Bank</label><input type="text" id="bankName" class="form-input" placeholder="Maybank Berhad"></div>
+                <div class="form-row"><label>Link QR Code (DuitNow URL)</label><input type="text" id="qrUrl" class="form-input" placeholder="https://pay.link/syarikat"></div>
+                <div id="qrFormPreview" style="display:none;margin-top:0.8rem;text-align:center;">
+                    <div id="qrFormCode"></div>
+                    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Preview QR Code</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Status & Nota Tambahan</h3>
+                <div class="form-row"><label>Status</label>
+                    <select id="resitPesananStatus" class="form-input">
+                        <option value="baru">Baru</option>
+                        <option value="proses">Dalam Proses</option>
+                        <option value="siap">Siap</option>
+                    </select>
+                </div>
+                <div class="form-row"><label>Nota Tambahan</label><textarea id="invoiceNotes" class="form-input form-textarea" placeholder="Terima kasih atas urusan niaga anda."></textarea></div>
+            </div>
+
+            <div class="form-actions-split">
+                <div class="form-actions-left">
+                    <button class="btn-reset" id="btnReset">Reset</button>
+                    <button class="btn-draft" id="btnMuatDraf" onclick="muatDraftResit()" title="Muat semula draf yang disimpan">
+                        <iconify-icon icon="iwwa:upload" width="13"></iconify-icon> Draf
+                    </button>
+                    <button class="btn-save" id="btnSave"><iconify-icon icon="iwwa:save" width="14"></iconify-icon> Simpan</button>
+                </div>
+                <div class="form-actions-right">
+                    <button class="btn-download" id="btnDownload"><iconify-icon icon="iwwa:download" width="14"></iconify-icon> Print / Muat Turun (PDF)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-panel" id="previewPanel">
+            <h2 class="panel-title" id="previewPanelTitle">Pratonton Resit</h2>
+            <div class="invoice-preview" id="invoicePreview">
+                <div class="preview-placeholder">
+                    <iconify-icon icon="iwwa:receipt" width="48"></iconify-icon>
+                    <span>Isi maklumat di sebelah kiri untuk pratonton</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE: PELANGGAN -->

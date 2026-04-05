@@ -1,0 +1,154 @@
+<!-- PAGE: FILE PELANGGAN -->
+<div class="page" id="page-filepelanggan">
+    <div class="list-topbar">
+        <div class="list-topbar-left">
+            <div style="display:flex;align-items:center;gap:6px">
+                <iconify-icon icon="iwwa:folder" width="20" style="color:var(--accent)"></iconify-icon>
+                <span style="font-size:0.9rem;font-weight:700;color:var(--text-primary)">Fail Pelanggan</span>
+            </div>
+        </div>
+        <div class="list-topbar-right">
+            <div class="list-search">
+                <iconify-icon icon="iwwa:search" width="16"></iconify-icon>
+                <input type="text" id="filePelangganSearch" placeholder="Cari nama pelanggan...">
+            </div>
+            <span class="list-count" id="filePelangganCount">0 pelanggan</span>
+        </div>
+    </div>
+
+    <!-- Grid kad pelanggan -->
+    <div id="filePelangganGrid" class="fp-grid"></div>
+    <div class="list-empty" id="filePelangganEmpty" style="display:none">
+        <iconify-icon icon="iwwa:folder" width="52"></iconify-icon>
+        <p>Tiada fail pelanggan lagi.</p>
+        <p>Fail akan dijana secara automatik apabila anda <strong>menyimpan Resit atau Invois</strong>.</p>
+    </div>
+</div>
+
+<!-- Modal: Detail Fail Pelanggan -->
+<div class="modal-overlay" id="modalFilePelanggan">
+    <div class="modal" style="max-width:680px">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalFilePelangganTitle">Fail Pelanggan</h2>
+            <button class="modal-close" onclick="tutupModal('modalFilePelanggan')">
+                <iconify-icon icon="iwwa:close" width="18"></iconify-icon>
+            </button>
+        </div>
+        <div class="modal-body" id="modalFilePelangganBody" style="overflow-y:auto;max-height:calc(90vh - 130px)"></div>
+    </div>
+</div>
+
+<style>
+/* ── Fail Pelanggan CSS ─────────────────────────────── */
+.fp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+}
+.fp-kad {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+}
+.fp-kad:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+.fp-kad-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+}
+.fp-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+.fp-nama {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.fp-stats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+.fp-dok-list {
+    background: var(--bg-app);
+    border-radius: 6px;
+    padding: 0.4rem;
+    margin-bottom: 0.6rem;
+    max-height: 120px;
+    overflow-y: auto;
+}
+.fp-dok-baris {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.12s;
+    gap: 4px;
+}
+.fp-dok-baris:hover { background: var(--bg-card); }
+.fp-dok-full-list { display: flex; flex-direction: column; gap: 6px; }
+.fp-dok-full-baris {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-app);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+}
+.fp-footer {
+    display: flex;
+    gap: 6px;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+.fp-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: all 0.15s;
+}
+.fp-btn:hover { background: rgba(99,102,241,0.12); border-color: var(--accent); color: var(--accent); }
+.fp-btn.danger:hover { background: rgba(239,68,68,0.12); border-color: var(--accent-red); color: var(--accent-red); }
+.fp-stat-mini {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+}
+.fp-stat-mini span { display: block; color: var(--text-muted); font-size: 0.68rem; }
+.fp-stat-mini strong { color: var(--text-primary); font-size: 0.88rem; }
+</style>

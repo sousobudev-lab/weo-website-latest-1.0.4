@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weo</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Weo">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="Weo">
+    <link rel="stylesheet" href="/.common/styles/global.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="theme-dark">
+
+<div id="toastContainer" class="toast-container"></div>
+<div class="overlay" id="overlay"></div>
+
+<div class="app">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar mini" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="images/favicon.png" alt="Weo" class="logo-icon">
+                <div>
+                    <span class="logo-name">Weo</span>
+                    <div class="logo-sub">We Execute Operations</div>
+                </div>
+            </div>
+            <!-- Button toggle untuk desktop (dalam sidebar) -->
+            <button class="sidebar-toggle-btn" id="sidebarToggleDesktop" title="Toggle sidebar">
+                <iconify-icon icon="oui:nav-overview" width="20"></iconify-icon>
+            </button>
+        </div>
+        <div class="sidebar-search">
+            <iconify-icon icon="iwwa:search" width="16"></iconify-icon>
+            <input type="text" id="searchInput" placeholder="Cari menu...">
+        </div>
+        <nav class="nav">
+            <span class="nav-label">UTAMA</span>
+            <a href="#" class="nav-item active" data-page="dashboard" data-section="Utama">
+                <iconify-icon icon="oui:nav-dashboards" width="18" class="nav-ico"></iconify-icon><span class="nav-txt">Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="pesanan" data-section="Utama">
+                <iconify-icon icon="icon-park-outline:transaction-order" width="18" class="nav-ico"></iconify-icon><span class="nav-txt">Pesanan & Pelanggan</span>
+            </a>
+            <a href="#" class="nav-item" data-page="resit" data-section="Utama">
+                <iconify-icon icon="hugeicons:invoice-03" width="18" class="nav-ico"></iconify-icon><span class="nav-txt">Resit / Invois</span>
+            </a>
+
+            <a href="#" class="nav-item" data-page="produk" data-section="Utama">
+                <iconify-icon icon="icon-park-outline:ad-product" width="18" class="nav-ico"></iconify-icon><span class="nav-txt">Produk</span>
+            </a>
+            <span class="nav-label">AKTIVITI</span>
+            <a href="#" class="nav-item" data-page="laporan" data-section="Aktiviti">
+                <iconify-icon icon="iwwa:chart" width="18" class="nav-ico"></iconify-icon><span class="nav-txt">Laporan</span>
+                <span class="nav-badge">WIP</span>
+            </a>
+            <span class="nav-label">SISTEM</span>
+            <a href="#" class="nav-item" data-page="tetapan" data-section="Sistem">
+                <iconify-icon icon="iwwa:settings" width="18" class="nav-ico"></iconify-icon><span class="nav-txt">Tetapan</span>
+            </a>
+            <span class="nav-label">FAIL</span>
+            <a href="#" class="nav-item" data-page="filepelanggan" data-section="Fail">
+                <iconify-icon icon="iwwa:folder" width="18" class="nav-ico"></iconify-icon>
+                <span class="nav-txt">Fail Pelanggan</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <div class="sidebar-user">
+                <div class="user-avatar"><img src="profiles/1772794396.png" id="sidebarAvatarImg"></div>
+                <div class="user-info">
+                    <p class="user-name" id="sidebarUserName">Sousobu</p>
+                    <p class="user-role">Admin</p>
+                </div>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Tukar Tema">
+                <iconify-icon icon="material-symbols:dark-mode" width="16" id="themeIcon"></iconify-icon>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main" id="main">
+        <header class="topbar">
+            <div class="topbar-left">
+                <!-- Hamburger untuk mobile/tablet — sentiasa kelihatan pada skrin kecil -->
+                <button class="hamburger hamburger-mobile" id="hamburgerMobile">
+                    <iconify-icon icon="oui:nav-overview" width="22"></iconify-icon>
+                </button>
+                <div class="page-title">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p class="breadcrumb"><span id="breadcrumbSection">Utama</span> / <span id="breadcrumb">Dashboard</span></p>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <span class="app-version" id="appVersion"></span>
+                <button class="icon-btn notif-btn" id="notifBtn" title="Notifikasi">
+                    <iconify-icon icon="material-symbols:notifications" width="20"></iconify-icon>
+                    <span class="notif-dot" id="notifDot" style="display:none"></span>
+                </button>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <span>Notifikasi</span>
+                        <button id="clearNotif" class="notif-clear">Padam semua</button>
+                    </div>
+                    <div id="notifList" class="notif-list"><div class="notif-empty">Tiada notifikasi</div></div>
+                </div>
+                <div class="topbar-avatar user-avatar" id="topbarAvatar">
+                    <img src="profiles/1772794396.png" id="topbarAvatarImg">
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+
+        <!-- ═══════════════════════════════════════════════════
+             PAGES — dimuatkan secara dinamik dari fail page/*.html
+             untuk pembangunan, gunakan live-server atau python -m http.server
+             ═══════════════════════════════════════════════════ -->
+        <div id="pagesContainer">
+            <!-- Page HTML dimuatkan oleh loadPages() dalam script.js -->
+        </div>
+
+        <!-- Modal Preview Produk (floating klik kad) -->
+<div class="modal-overlay" id="modalProdukPreview">
+    <div class="modal modal-sm">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalProdukPreviewTitle">Pratonton Produk</h2>
+            <button class="modal-close" id="modalProdukPreviewClose"><iconify-icon icon="iwwa:close" width="18"></iconify-icon></button>
+        </div>
+        <div class="modal-body" id="modalProdukPreviewBody" style="padding:1rem;"></div>
+        <div class="modal-footer">
+            <button class="btn-download" id="btnProdukPreviewDownload" style="width:100%">
+                <iconify-icon icon="iwwa:download" width="14"></iconify-icon> Print / Muat Turun (PDF)
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Avatar Modal -->
+<div class="avatar-modal-overlay" id="avatarModalOverlay">
+    <div class="avatar-modal">
+        <button class="avatar-modal-close" id="avatarModalClose"><iconify-icon icon="iwwa:close" width="16"></iconify-icon></button>
+        <img src="profiles/1772794396.png" class="avatar-modal-img" id="avatarModalImg">
+        <div class="avatar-modal-info">
+            <p class="avatar-modal-name" id="avatarModalName">Sousobu</p>
+            <p class="avatar-modal-role">Admin</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal pratonton resit dari baris pelanggan -->
+<div class="modal-overlay" id="modalResitPreview">
+    <div class="modal" style="max-width:800px">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalResitPreviewTitle">Pratonton Resit</h2>
+            <button class="modal-close" id="modalResitPreviewClose"><iconify-icon icon="iwwa:close" width="18"></iconify-icon></button>
+        </div>
+        <div class="modal-body" id="modalResitPreviewBody" style="padding:1rem;background:#f8fafc;overflow-y:auto;max-height:calc(90vh - 130px)"></div>
+        <div class="modal-footer" style="display:flex;gap:0.5rem">
+            <button class="btn-download" id="btnResitPreviewPDF" style="flex:1"><iconify-icon icon="iwwa:download" width="14"></iconify-icon> Muat Turun PDF</button>
+        </div>
+    </div>
+</div>
+<div id="printArea" style="display:none;"></div>
+
+        <!-- Script utama (core: sidebar, page-switching, tema, notif) -->
+        <script src="script.js"></script>
+
+        <!-- Modul setiap page — dimuatkan selepas script.js -->
+        <script src="configurations/resit.js"></script>
+        <script src="configurations/pelanggan.js"></script>
+        <script src="configurations/produk.js"></script>
+        <script src="configurations/pesanan.js"></script>
+        <script src="configurations/laporan.js"></script>
+        <script src="configurations/tetapan.js"></script>
+
+        <!-- PWA Service Worker -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js').catch(() => {});
+                });
+            }
+        </script>
+    </div><!-- end .content -->
+    </div><!-- end .main -->
+</div><!-- end .app -->
+</body>
+</html>
+

@@ -1,0 +1,213 @@
+<!-- PAGE: TETAPAN -->
+<div class="page" id="page-tetapan">
+    <div class="page-content">
+        <div class="tetapan-grid">
+            <!-- KIRI: Maklumat Perniagaan + Paparan -->
+            <div>
+                <div class="settings-card">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+                        <h3 class="form-section-title" style="margin:0;font-size:0.72rem;letter-spacing:1.5px">MAKLUMAT PERNIAGAAN</h3>
+                        <button class="btn-new-single" id="btnTambahAkaun" style="font-size:0.72rem;padding:0.28rem 0.6rem"><iconify-icon icon="iwwa:add" width="11"></iconify-icon> Akaun Baru</button>
+                    </div>
+                    <div id="akunList" style="margin-bottom:0.8rem;display:flex;gap:5px;flex-wrap:wrap"></div>
+                    <div class="form-row"><label>Nama Perniagaan</label><input type="text" id="tetapanBizNama" class="form-input" placeholder="Nama Perniagaan Sdn Bhd"></div>
+                    <div class="form-row"><label>No. Pendaftaran</label><input type="text" id="tetapanBizReg" class="form-input" placeholder="123456-X"></div>
+                    <div class="form-row"><label>Alamat</label><textarea id="tetapanBizAlamat" class="form-input form-textarea" placeholder="Alamat perniagaan..."></textarea></div>
+                    <div class="form-row-2col">
+                        <div class="form-row"><label>Telefon</label><input type="text" id="tetapanBizTel" class="form-input" placeholder="+60 11-392 7575"></div>
+                        <div class="form-row"><label>Email</label><input type="text" id="tetapanBizEmail" class="form-input" placeholder="info@perniagaan.com"></div>
+                    </div>
+                    <div class="form-row"><label>No. Bank (Default)</label><input type="text" id="tetapanBizBank" class="form-input" placeholder="9863 9164 1625 2976"></div>
+                    <div class="form-row"><label>Nama Bank (Default)</label><input type="text" id="tetapanBizNamaBank" class="form-input" placeholder="Maybank Berhad"></div>
+                    <div class="form-row"><label>DuitNow QR URL (Default)</label><input type="text" id="tetapanBizQR" class="form-input" placeholder="pay.weo-project.my"></div>
+                    <div class="form-row"><label>Link Kedai / Produk Online</label><input type="text" id="tetapanBizLink" class="form-input" placeholder="https://shopee.com/kedai-anda"></div>
+                    <button class="btn-save" id="btnSimpanBiz" style="width:100%;margin-top:0.8rem"><iconify-icon icon="iwwa:save" width="13"></iconify-icon> Simpan Maklumat Perniagaan</button>
+                </div>
+                <div class="settings-card" style="margin-top:0.8rem">
+                    <h3 class="form-section-title" style="font-size:0.72rem;letter-spacing:1.5px">PAPARAN</h3>
+                    <div class="settings-row">
+                        <div><p class="settings-label">Tema</p><p class="settings-desc">Mod gelap atau cerah</p></div>
+                        <button class="theme-toggle-big" id="themeTogglePage"><iconify-icon icon="iwwa:moon" width="18" id="themeIconPage"></iconify-icon><span id="themeLabel">Mod Gelap</span></button>
+                    </div>
+                </div>
+            </div>
+            <!-- KANAN: Pintasan + Profil + Penjual -->
+            <div>
+                <div class="settings-card">
+                    <h3 class="form-section-title" style="font-size:0.72rem;letter-spacing:1.5px">PINTASAN</h3>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.6rem">
+                        <button class="btn-shortcut" onclick="tukarkePage('resit')"><iconify-icon icon="iwwa:receipt" width="15"></iconify-icon> Resit Baru</button>
+                        <button class="btn-shortcut" onclick="tukarkePage('pesanan')"><iconify-icon icon="iwwa:file-text" width="15"></iconify-icon> Pesanan Baru</button>
+                        <button class="btn-shortcut" onclick="tukarkePage('produk')"><iconify-icon icon="iwwa:package" width="15"></iconify-icon> Tambah Produk</button>
+                        <button class="btn-shortcut" onclick="tukarkePage('laporan')"><iconify-icon icon="iwwa:chart" width="15"></iconify-icon> Lihat Laporan</button>
+                    </div>
+                </div>
+                <div class="settings-card" style="margin-top:0.8rem">
+                    <h3 class="form-section-title" style="font-size:0.72rem;letter-spacing:1.5px">PROFIL</h3>
+                    <div style="display:flex;align-items:center;gap:0.8rem;margin-top:0.6rem">
+                        <div style="position:relative;flex-shrink:0">
+                            <div class="user-avatar" style="width:50px;height:50px"><img id="tetapanAvatarImg" src="profiles/1772794396.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+                            <input type="file" id="tetapanAvatarInput" accept="image/*" hidden>
+                            <button onclick="document.getElementById('tetapanAvatarInput').click()" style="position:absolute;bottom:-3px;right:-3px;width:18px;height:18px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg-card);cursor:pointer"><iconify-icon icon="iwwa:camera" width="9" style="color:white"></iconify-icon></button>
+                        </div>
+                        <div style="flex:1">
+                            <div class="form-row" style="margin-bottom:0.35rem"><label style="font-size:0.72rem">Nama Paparan</label><input type="text" id="tetapanNama" class="form-input" placeholder="Nama anda" value="Sousobu"></div>
+                            <button class="btn-save" id="btnSimpanProfil" style="font-size:0.78rem;padding:0.35rem 0.8rem"><iconify-icon icon="iwwa:save" width="11"></iconify-icon> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-card" style="margin-top:0.8rem">
+                    <h3 class="form-section-title" style="font-size:0.72rem;letter-spacing:1.5px">PENJUAL AKTIF</h3>
+                    <p style="font-size:0.78rem;color:var(--text-secondary);margin:0.4rem 0 0.6rem">Nama direkodkan pada setiap resit &amp; pesanan baru.</p>
+                    <div class="form-row"><label>Nama Penjual</label><input type="text" id="tetapanPenjual" class="form-input" placeholder="Nama penjual aktif"></div>
+                    <button class="btn-save" id="btnSimpanPenjual" style="font-size:0.78rem;padding:0.35rem 0.8rem;margin-top:0.5rem"><iconify-icon icon="iwwa:save" width="11"></iconify-icon> Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div><!-- end .content -->
+    </div><!-- end .main -->
+</div><!-- end .app -->
+
+<!-- ===== MODAL PESANAN ===== -->
+<div class="modal-overlay" id="modalPesanan">
+    <div class="modal modal-md">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalPesananTitle">Pesanan Baru</h2>
+            <button class="modal-close" id="modalPesananClose"><iconify-icon icon="iwwa:close" width="18"></iconify-icon></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-section">
+                <h3 class="form-section-title">Maklumat Pesanan</h3>
+                <div class="form-row-2col">
+                    <div class="form-row"><label>Tarikh</label><input type="date" id="pesananTarikh" class="form-input"></div>
+                </div>
+                <div class="form-row"><label>Nama Pelanggan <span style="color:var(--accent-red)">*</span></label><input type="text" id="pesananPelanggan" class="form-input" placeholder="Nama Pelanggan" required></div>
+                <div class="form-row"><label>Email</label><input type="email" id="pesananEmail" class="form-input" placeholder="pelanggan@email.com"></div>
+                <div class="form-row"><label>No. Telefon <span style="color:var(--accent-red)">*</span></label>
+                    <div class="phone-input-row">
+                        <select id="pesananCountryCode" class="form-input form-input-small" style="max-width:70px;flex-shrink:0">
+                            <option value="+60" selected>+60</option>
+                            <option value="+62">+62</option>
+                        </select>
+                        <input type="tel" id="pesananTel" class="form-input" placeholder="123456789" inputmode="numeric" pattern="[0-9]*" required style="flex:1;" autocomplete="tel" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h3 class="form-section-title">Item Pesanan</h3>
+                <div class="form-row" style="margin-bottom:0.5rem">
+                    <label>Pilih dari Produk</label>
+                    <div style="display:flex;gap:6px">
+                        <select id="pesananPilihProduk" class="form-input" style="flex:1"><option value="" disabled selected hidden>— Pilih produk —</option></select>
+                        <button class="btn-save" id="btnTambahPesananItem" style="flex-shrink:0;padding:0.5rem 0.8rem;font-size:0.82rem">+ Tambah</button>
+                    </div>
+                </div>
+                <div id="pesananItemList"></div>
+            </div>
+            <div class="form-section">
+                <h3 class="form-section-title">Status &amp; Nota</h3>
+                <div class="form-row"><label>Status</label>
+                    <select id="pesananStatus" class="form-input">
+                        <option value="baru">Baru</option>
+                        <option value="proses">Dalam Proses</option>
+                        <option value="siap">Siap</option>
+                    </select>
+                </div>
+                <div class="form-row"><label>Nota</label><textarea id="pesananNota" class="form-input form-textarea" placeholder="Nota tambahan..."></textarea></div>
+            </div>
+            <div class="form-actions-split">
+                <div class="form-actions-left"><button class="btn-reset" id="btnPesananReset">Reset</button></div>
+                <div class="form-actions-right"><button class="btn-save" id="btnPesananSave"><iconify-icon icon="iwwa:save" width="14"></iconify-icon> Simpan</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MODAL PRODUK ===== -->
+<div class="modal-overlay" id="modalProduk">
+    <div class="modal modal-wide">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalProdukTitle">Produk Baru</h2>
+            <button class="modal-close" id="modalProdukClose"><iconify-icon icon="iwwa:close" width="18"></iconify-icon></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-workspace">
+                <div class="modal-form-panel">
+                    <div class="form-section">
+                        <h3 class="form-section-title">Maklumat Syarikat</h3>
+                        <div class="form-row"><label>Logo Syarikat</label>
+                            <div class="img-upload-wrap">
+                                <div class="logo-upload-area" id="produkLogoArea">
+                                    <input type="file" id="produkLogoInput" accept="image/*" hidden>
+                                    <img id="produkLogoPreview" src="" alt="" style="display:none;max-height:60px;border-radius:6px;">
+                                    <div id="produkLogoPlaceholder"><iconify-icon icon="iwwa:camera" width="24"></iconify-icon><span>Klik untuk muat naik logo</span></div>
+                                </div>
+                                <button class="btn-delete-img" id="btnDeleteProdukLogo" style="display:none"><iconify-icon icon="iwwa:trash" width="14"></iconify-icon></button>
+                            </div>
+                        </div>
+                        <div class="form-row" style="position:relative">
+                            <label>Nama Syarikat / Jenama</label>
+                            <input type="text" id="produkSyarikat" class="form-input" placeholder="Nama Syarikat Sdn Bhd" autocomplete="off">
+                            <div id="produkSyarikatSuggest" class="suggest-box" style="display:none"></div>
+                        </div>
+                        <div class="form-row"><label>Slogan / Tagline</label><input type="text" id="produkSlogan" class="form-input" placeholder="Kualiti Terbaik Untuk Anda"></div>
+                        <div class="form-row"><label>Warna Tema</label><input type="color" id="produkWarna" class="form-input" value="#003543" style="height:40px;padding:4px;"></div>
+                    </div>
+                    <div class="form-section">
+                        <h3 class="form-section-title">Maklumat Produk</h3>
+                        <div class="form-row"><label>Gambar Produk</label>
+                            <div class="img-upload-wrap">
+                                <div class="logo-upload-area" id="produkGambarArea">
+                                    <input type="file" id="produkGambarInput" accept="image/*" hidden>
+                                    <img id="produkGambarPreview" src="" alt="" style="display:none;max-height:120px;border-radius:6px;width:100%;object-fit:contain;">
+                                    <div id="produkGambarPlaceholder"><iconify-icon icon="iwwa:image" width="24"></iconify-icon><span>Klik untuk muat naik gambar</span></div>
+                                </div>
+                                <button class="btn-delete-img" id="btnDeleteProdukGambar" style="display:none"><iconify-icon icon="iwwa:trash" width="14"></iconify-icon></button>
+                            </div>
+                        </div>
+                        <div class="form-row"><label>Nama Produk</label><input type="text" id="produkNama" class="form-input" placeholder="Nama Produk Anda"></div>
+                        <div class="form-row"><label>Penerangan</label><textarea id="produkDesc" class="form-input form-textarea" placeholder="Penerangan ringkas..."></textarea></div>
+                        <div class="form-row-2col">
+                            <div class="form-row"><label>Harga Asal (RM)</label><input type="number" id="produkHargaAsal" class="form-input" placeholder="100.00" min="0" step="0.01"></div>
+                            <div class="form-row"><label>Harga Promosi (RM)</label><input type="number" id="produkHargaPromo" class="form-input" placeholder="80.00" min="0" step="0.01"></div>
+                        </div>
+                        <div class="form-row"><label>Label Tawaran</label><input type="text" id="produkLabel" class="form-input" placeholder="JIMAT 20%"></div>
+                        <div class="form-row"><label>Stok</label>
+                            <select id="produkStok" class="form-input">
+                                <option value="ada">Tersedia</option>
+                                <option value="habis">Habis Stok</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3 class="form-section-title">Maklumat Hubungi</h3>
+                        <div class="form-row"><label>No. Telefon / WhatsApp</label><input type="text" id="produkTel" class="form-input" placeholder="+60 12-345 6789"></div>
+                        <div class="form-row">
+                            <label>Link Produk / Kedai Online</label>
+                            <input type="text" id="produkLink" class="form-input" placeholder="https://shopee.com/produk-anda">
+                        </div>
+                        <div class="form-row"><label>Nota Tambahan</label><textarea id="produkNota" class="form-input form-textarea" placeholder="Stok terhad!"></textarea></div>
+                    </div>
+                    <div class="form-actions-split">
+                        <div class="form-actions-left">
+                            <button class="btn-reset" id="btnProdukReset">Reset</button>
+                            <button class="btn-save" id="btnProdukSave"><iconify-icon icon="iwwa:save" width="14"></iconify-icon> Simpan</button>
+                        </div>
+                        <div class="form-actions-right">
+                            <button class="btn-download" id="btnProdukDownload"><iconify-icon icon="iwwa:download" width="14"></iconify-icon> Print / Muat Turun (PDF)</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-preview-panel">
+                    <h2 class="panel-title">Pratonton Flyer</h2>
+                    <div id="produkPreview" class="produk-flyer-wrap">
+                        <div class="preview-placeholder"><iconify-icon icon="iwwa:package" width="48"></iconify-icon><span>Pratonton flyer di sini</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

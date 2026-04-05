@@ -1,0 +1,66 @@
+<!-- PAGE: PESANAN -->
+<div class="page" id="page-pesanan">
+    <div class="list-topbar">
+        <div class="list-topbar-left" style="position:relative;">
+            <!-- Split button: klik mana-mana → dropdown -->
+            <div class="btn-split-wrap" style="position:relative">
+                <div class="btn-split-group" id="btnSplitMain" title="Buat dokumen atau pesanan baru">
+                    <span class="btn-split-left"><iconify-icon icon="iwwa:add" width="14"></iconify-icon> Baru</span>
+                    <span class="btn-split-divider"></span>
+                    <span class="btn-split-arrow">▾</span>
+                </div>
+                <div class="dropdown-menu" id="btnNewDropdown">
+                    <button class="btn-dropdown-item" data-action="new-pesanan">
+                        <iconify-icon icon="icon-park-outline:transaction-order" width="14"></iconify-icon>&nbsp;Pesanan Baru
+                    </button>
+                    <hr class="dropdown-divider">
+                    <button class="btn-dropdown-item" data-action="new-resit">
+                        <iconify-icon icon="hugeicons:invoice-03" width="14"></iconify-icon>&nbsp;Resit Baru
+                    </button>
+                    <button class="btn-dropdown-item" data-action="new-invoice">
+                        <iconify-icon icon="hugeicons:invoice-03" width="14"></iconify-icon>&nbsp;Invois Baru
+                    </button>
+                </div>
+            </div>
+            <!-- Padam bulk (muncul bila checkbox dipilih) -->
+            <button class="btn-bulk-delete" id="btnGabungBulkDelete" style="display:none">
+                <iconify-icon icon="iwwa:trash" width="14"></iconify-icon> Padam
+            </button>
+        </div>
+        <div class="list-topbar-right">
+            <div class="list-search">
+                <iconify-icon icon="iwwa:search" width="16"></iconify-icon>
+                <input type="text" id="gabungSearch" placeholder="Cari nama, no. dokumen...">
+            </div>
+            <button class="btn-export" onclick="eksportGabungCSV()" title="Eksport CSV">
+                <iconify-icon icon="iwwa:download" width="14"></iconify-icon> CSV
+            </button>
+            <span class="list-count" id="gabungCount">0 rekod</span>
+        </div>
+    </div>
+
+    <div class="list-table-wrap">
+        <table class="list-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="gabungCheckAll"></th>
+                    <th>No. Pesanan</th>
+                    <th>Pelanggan</th>
+                    <th>Item / Produk</th>
+                    <th style="text-align:center">Tarikh</th>
+                    <th style="text-align:right">Jumlah (RM)</th>
+                    <th>Status</th>
+                    <th>Jenis</th>
+                    <th>Tindakan</th>
+                    <th>Kemaskini</th>
+                </tr>
+            </thead>
+            <tbody id="gabungTableBody"></tbody>
+        </table>
+        <div class="list-empty" id="gabungEmpty">
+            <iconify-icon icon="iwwa:file-text" width="48"></iconify-icon>
+            <p>Tiada rekod lagi.</p>
+            <p>Gunakan halaman <strong>Resit / Invois</strong> untuk tambah pesanan baru dan dokumen.</p>
+        </div>
+    </div>
+</div>
