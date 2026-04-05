@@ -7,7 +7,7 @@ const CACHE_NAME = 'weo-v1';
 const ASSETS = [
     '/',
     '/index.html',
-    '/global.css',
+    '/styles/style.css',
     '/script.js',
     '/manifest.json'
 ];
